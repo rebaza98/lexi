@@ -30,12 +30,14 @@ import {
   TruckIcon
   
 } from '@heroicons/react/24/outline'
-import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+import { ChevronDownIcon, MagnifyingGlassIcon, ArrowsRightLeftIcon, ArrowUpOnSquareStackIcon, CodeBracketSquareIcon } from '@heroicons/react/20/solid'
 //import CSidebar from './CSidebar'
 
 const navigation = [
-  { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-  { name: 'Matriz', href: '/matrizBeta', icon: UsersIcon, current: false },
+  { name: 'Inicio', href: '/', icon: HomeIcon, current: false },
+  { name: 'Sinonimos', href: '/matrizBeta', icon: ArrowsRightLeftIcon, current: false },
+  { name: 'Definiciones', href: '/matrizConstruccion', icon: ArrowUpOnSquareStackIcon, current: false },
+  { name: 'Marca Dinamica', href: '/entradaLexico', icon: CodeBracketSquareIcon, current: false },
   // { name: 'Despachos', href: '#', icon: TruckIcon, current: false },
   // { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
   // { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false },
@@ -111,7 +113,7 @@ export default function Example({children}) {
                     </div>
                   </Transition.Child>
                   {/* Sidebar component, swap this element with another sidebar if you like */}
-                  <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 pb-4">
+                  <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-orange-600 px-6 pb-4">
                     <div className="flex h-16 shrink-0 items-center">
                       <img
                         className="h-8 w-auto"
@@ -129,8 +131,8 @@ export default function Example({children}) {
                                   href={item.href}
                                   className={classNames(
                                     item.current
-                                      ? 'bg-indigo-700 text-white'
-                                      : 'text-indigo-200 hover:text-white hover:bg-indigo-700',
+                                      ? 'bg-orange-700 text-white'
+                                      : 'text-indigo-200 hover:text-white hover:bg-orange-700',
                                     'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
                                   )}
                                 >
@@ -156,7 +158,7 @@ export default function Example({children}) {
                                   href={team.href}
                                   className={classNames(
                                     team.current
-                                      ? 'bg-indigo-700 text-white'
+                                      ? 'bg-orange-700 text-white'
                                       : 'text-indigo-200 hover:text-white hover:bg-indigo-700',
                                     'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
                                   )}
@@ -194,7 +196,7 @@ export default function Example({children}) {
         {/* Static sidebar for desktop */}
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 pb-4">
+          <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-orange-600 px-6 pb-4">
             <div className="flex h-16 shrink-0 items-center">
               <img
                 className="h-8 w-auto"
@@ -212,14 +214,14 @@ export default function Example({children}) {
                           href={item.href}
                           className={classNames(
                             item.current
-                              ? 'bg-indigo-700 text-white'
-                              : 'text-indigo-200 hover:text-white hover:bg-indigo-700',
+                              ? 'bg-orange-700 text-white'
+                              : 'text-orange-200 hover:text-white hover:bg-orange-700',
                             'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
                           )}
                         >
                           <item.icon
                             className={classNames(
-                              item.current ? 'text-white' : 'text-indigo-200 group-hover:text-white',
+                              item.current ? 'text-white' : 'text-orange-200 group-hover:text-white',
                               'h-6 w-6 shrink-0'
                             )}
                             aria-hidden="true"
@@ -231,7 +233,7 @@ export default function Example({children}) {
                   </ul>
                 </li>
                 <li>
-                  <div className="text-xs font-semibold leading-6 text-indigo-200">Your teams</div>
+                  {/* <div className="text-xs font-semibold leading-6 text-indigo-200">Your teams</div> */}
                   <ul role="list" className="-mx-2 mt-2 space-y-1">
                     {teams.map((team) => (
                       <li key={team.name}>
@@ -240,11 +242,11 @@ export default function Example({children}) {
                           className={classNames(
                             team.current
                               ? 'bg-indigo-700 text-white'
-                              : 'text-indigo-200 hover:text-white hover:bg-indigo-700',
+                              : 'text-indigo-200 hover:text-white hover:bg-orange-700',
                             'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
                           )}
                         >
-                          <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-indigo-400 bg-indigo-500 text-[0.625rem] font-medium text-white">
+                          <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-orange-400 bg-orange-500 text-[0.625rem] font-medium text-white">
                             {team.initial}
                           </span>
                           <span className="truncate">{team.name}</span>
@@ -254,16 +256,7 @@ export default function Example({children}) {
                   </ul>
                 </li>
                 <li className="mt-auto">
-                  <a
-                    href="#"
-                    className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-indigo-200 hover:bg-indigo-700 hover:text-white"
-                  >
-                    <Cog6ToothIcon
-                      className="h-6 w-6 shrink-0 text-indigo-200 group-hover:text-white"
-                      aria-hidden="true"
-                    />
-                    Settings
-                  </a>
+                
                 </li>
               </ul>
             </nav>
@@ -318,7 +311,7 @@ export default function Example({children}) {
                     />
                     <span className="hidden lg:flex lg:items-center">
                       <span className="ml-4 text-sm font-semibold leading-6 text-gray-900" aria-hidden="true">
-                        Tom Cook
+                        Usuario
                       </span>
                       <ChevronDownIcon className="ml-2 h-5 w-5 text-gray-400" aria-hidden="true" />
                     </span>

@@ -2,7 +2,7 @@ import { Fragment, useState } from 'react'
 import { Dialog, Transition, Disclosure } from '@headlessui/react'
 import { CheckIcon, NewspaperIcon, ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline'
 
-export default function ModalDefinicion({open, setOpen, definicion, definiciones, sinonimos}) {
+export default function ModalConstruccion({open, setOpen, definicion, definiciones, sinonimos, inferencias}) {
   //const [open, setOpen] = useState(true)
 
   console.log("SE ABRE ESTE MODAL", definicion)
@@ -43,17 +43,18 @@ export default function ModalDefinicion({open, setOpen, definicion, definiciones
                       {definicion.palabra}.
                     </Dialog.Title>
                     <div className="mt-2">
-
+                      <p><strong>Definicion: </strong></p> 
+                      
+                     
                     {definiciones.map((def, i) => (
-                        <p key={i} className="text-sm text-gray-500">
-                          <strong>{i+1}</strong> .-{def}
-                        </p>                      
+                          <span key={i} >{` ${def.toLowerCase()} `}</span>
+                        
                       ))}
 
                       
                     </div>
                     <div className="border-b border-gray-900/10 pb-12"></div>
-                    {sinonimos.length ? 
+                    {inferencias.length || sinonimos.length ? 
                     (
                       <>
                       <Disclosure>
@@ -67,17 +68,47 @@ export default function ModalDefinicion({open, setOpen, definicion, definiciones
                               />
                             </Disclosure.Button>
                             <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
-                            <h3 className="text-base font-semibold leading-6 text-gray-900">Sinonimos:</h3>
-                            <div className='flex justify-start' >
-                        
-                      
-                        {sinonimos.map((palabra, i) => (
-                          <div key={i} className="text-sm mr-1 underline cursor-pointer ml-1 text-gray-500" >
-                            <strong>{`<`}{palabra}{`>`}</strong>
-                          </div>
-                        ))}
-                        </div>
-                            </Disclosure.Panel>
+                              {inferencias.map((inferencia, i) => (
+                                <div key={i}>
+                                  <h3><strong>{`<`}{inferencia.palabra}{`><`}</strong>
+                                    {inferencia.definiciones.map((definicion, j) => (
+                                      <span key={j} >{` `}{definicion}{` `}</span>
+                                    ))}
+                                    <strong>{`> `}</strong>
+                                  </h3>
+                                </div>
+                              ))}
+                              <br></br>
+                                  {sinonimos.length ? (
+                                  <Disclosure>
+                                    {({ open }) => (
+                                      <>
+                                        <Disclosure.Button className="flex w-full justify-between rounded-lg bg-green-100 px-4 py-2 text-left text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring focus-visible:ring-green-500 focus-visible:ring-opacity-75">
+                                          <span>Remisiones:</span>
+                                          <ChevronUpIcon
+                                            className={`${open ? 'rotate-180 transform' : ''
+                                              } h-5 w-5 text-green-500`}
+                                          />
+                                        </Disclosure.Button>
+                                        <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
+                                          {sinonimos.map((palabra, j) => (
+                                            <div key={j}>
+                                              véase.<strong>{`<`}{palabra}{`>`}</strong>      
+                                                
+                                            </div>
+                                            
+                                          ))}
+
+                                        </Disclosure.Panel>
+
+                                      </>
+                                    )}
+                                  </Disclosure>
+                                  ): ('')
+                                  }
+
+                                </Disclosure.Panel>
+                            
                           </>
                         )}
                       </Disclosure>
@@ -91,7 +122,7 @@ export default function ModalDefinicion({open, setOpen, definicion, definiciones
                 <div className="mt-5 sm:mt-6">
                   <button
                     type="button"
-                    className="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    className="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 "
                     onClick={() => setOpen(false)}
                   >
                     Cerrar

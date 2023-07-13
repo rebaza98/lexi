@@ -9,6 +9,8 @@ import styles from "./styles.module.css"
 import { PhotoIcon, UserCircleIcon, PlusIcon, MinusIcon} from '@heroicons/react/24/solid'
 import ModalDefinicion from "@/components/ModalDefinicion"
 
+import { Tooltip } from "react-tooltip"
+
 // const pages = [
 //     { name: 'Inventario', href: '#', current: false },
 //     { name: 'Productos', href: '/inventario/productos', current: true },
@@ -19,29 +21,27 @@ const MatrizBetaHome = () => {
     const [dataSet, setDataSet] = useState(
         {
             palabras : [
-                { id:1, palabra: 'dar', definiciones : [], sinonimos: []},
-                { id:2, palabra: 'entregar', definiciones : [], sinonimos: []},
-                { id:3, palabra: 'conceder', definiciones : [], sinonimos: []},
-                { id:4, palabra: 'otorgar', definiciones : [], sinonimos: []},
-                { id:5, palabra: 'suministrar', definiciones : [], sinonimos: []},
-                { id:6, palabra: 'regalar', definiciones : [], sinonimos: []},
-                { id:7, palabra: 'donar', definiciones : [], sinonimos: []},
-                { id:8, palabra: 'proporcionar', definiciones : [], sinonimos: []},
+                { id:1, palabra: 'Creatividad', definiciones : [], sinonimos: []},
+                { id:2, palabra: 'Amistad', definiciones : [], sinonimos: []},
+                { id:3, palabra: 'Innovación', definiciones : [], sinonimos: []},
+                { id:4, palabra: 'Felicidad', definiciones : [], sinonimos: []},
+                { id:5, palabra: 'Éxito', definiciones : [], sinonimos: []},
+                { id:6, palabra: 'Camaradería', definiciones : [], sinonimos: []},
+                { id:7, palabra: 'Independencia', definiciones : [], sinonimos: []},
+                { id:8, palabra: 'Equidad', definiciones : [], sinonimos: []},
                 { id:9, palabra: 'obsequiar', definiciones : [], sinonimos: []},
-                { id:10, palabra: 'adjudicar', definiciones : [], sinonimos: []},
-                { id:11, palabra: 'conferir', definiciones : [], sinonimos: []},
-                { id:12, palabra: 'prestar', definiciones : [], sinonimos: []},
+                { id:10, palabra: 'Amor', definiciones : [], sinonimos: []},
             ],
         
             definiciones : [
-                { id:1, definicion : "Realizar una acción de entrega o transferencia de algo a alguien."},
-                { id:2, definicion : "Producir o proporcionar algo a alguien."},
-                { id:3, definicion : "Conceder o permitir algo a alguien."},
-                { id:4, definicion : "Transmitir o comunicar información, conocimiento o instrucciones a alguien."},
-                { id:5, definicion : "Generar una respuesta o reacción en alguien."},
-                { id:6, definicion : "Otorgar o conferir un premio, reconocimiento o título a alguien."},
-                { id:7, definicion : "Hacer un movimiento o gesto físico para entregar o transferir algo."},
-                { id:8, definicion : "Proporcionar una oportunidad, permiso o autorización para que alguien haga algo."},
+                { id:1, definicion : "Sentimiento de afecto, atracción y cariño hacia otra persona.."},
+                { id:2, definicion : "Estado de bienestar y satisfacción personal."},
+                { id:3, definicion : "Logro de metas y objetivos deseados."},
+                { id:4, definicion : "Condición de poder actuar y decidir sin restricciones externas."},
+                { id:5, definicion : "Capacidad de generar ideas originales y novedosas."},
+                { id:6, definicion : "Vínculo afectivo y de confianza entre personas."},
+                { id:7, definicion : "Principio ético de dar a cada uno lo que le corresponde."},
+                { id:8, definicion : "Estado de calma y ausencia de conflictos."},
             ]
         }
 
@@ -176,6 +176,32 @@ const MatrizBetaHome = () => {
         }
     }
 
+    const handlePredeterminado = () => {
+        setDataSet({
+            palabras : [
+                { id:1, palabra: 'Creatividad', definiciones : [5], sinonimos: []},
+                { id:2, palabra: 'Amistad', definiciones : [6], sinonimos: []},
+                { id:3, palabra: 'Innovación', definiciones : [5], sinonimos: []},
+                { id:4, palabra: 'Felicidad', definiciones : [4], sinonimos: []},
+                { id:5, palabra: 'Éxito', definiciones : [3], sinonimos: []},
+                { id:6, palabra: 'Camaradería', definiciones : [6], sinonimos: []},
+                { id:7, palabra: 'Independencia', definiciones : [4], sinonimos: []},
+                { id:8, palabra: 'Equidad', definiciones : [7], sinonimos: []},
+                { id:9, palabra: 'Amor', definiciones : [1], sinonimos: []},
+            ],
+        
+            definiciones : [
+                { id:1, definicion : "Sentimiento de afecto, atracción y cariño hacia otra persona.."},
+                { id:2, definicion : "Estado de bienestar y satisfacción personal."},
+                { id:3, definicion : "Logro de metas y objetivos deseados."},
+                { id:4, definicion : "Condición de poder actuar y decidir sin restricciones externas."},
+                { id:5, definicion : "Capacidad de generar ideas originales y novedosas."},
+                { id:6, definicion : "Vínculo afectivo y de confianza entre personas."},
+                { id:7, definicion : "Principio ético de dar a cada uno lo que le corresponde."},
+                { id:8, definicion : "Estado de calma y ausencia de conflictos."},
+            ]
+        })
+    }
 
     return (
         <>
@@ -189,7 +215,9 @@ const MatrizBetaHome = () => {
                     </div>
                     <div className="mt-4 flex md:ml-4 md:mt-0">
                         
-                        
+                    <button onClick={()=>handlePredeterminado()} data-tooltip-id="my-tooltip" data-tooltip-content="Cargar Valores">
+                        Predeterminado
+                    </button>
                     </div>
             </div>
 
@@ -225,7 +253,7 @@ const MatrizBetaHome = () => {
                             <tbody >
                                 {dataSet.palabras.map((palabra) => (
                                     <tr key={palabra.id}>
-                                        <td onClick={ () => handleClickDefinicion(palabra.id) } className={`relative py-4 pr-3 text-sm font-medium text-indigo-900 ${styles['link-like']}`}>
+                                        <td onClick={ () => handleClickDefinicion(palabra.id) } className={`relative py-4 pr-3 text-sm font-medium text-orange-900 ${styles['link-like']}`}>
                                             {palabra.palabra}
                                            
                                         </td >
@@ -233,20 +261,20 @@ const MatrizBetaHome = () => {
                                             <td   key={def.id} className="text-center"  >
                                                 {(verificaRelacion(palabra.definiciones, def.id)) ? 
                                                     ( 
-                                                        <button className="rounded-full bg-green-600 p-1 text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"  onClick={ () =>   handleClickRemove(palabra.id, def.id)}  
+                                                        <button data-tooltip-id={`${palabra.id}-${def.id}`} data-tooltip-content={def.definicion} data-tooltip-delay-show="350" className="rounded-full bg-green-600 p-1 text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"  onClick={ () =>   handleClickRemove(palabra.id, def.id)}  
                                                         >
                                                             <PlusIcon className="h-5 w-5" aria-hidden="true" />
                                                         </button>
                                                     ) 
                                                     : 
                                                     (    
-                                                        <button className="rounded-full bg-indigo-600 p-1 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"  onClick={ () =>   handleClickAdd(palabra.id, def.id)}  
+                                                        <button data-tooltip-id={`${palabra.id}-${def.id}`} data-tooltip-content={def.definicion} data-tooltip-delay-show="350" className="rounded-full bg-orange-600 p-1 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"  onClick={ () =>   handleClickAdd(palabra.id, def.id)}  
                                                         >
                                                             <MinusIcon className="h-5 w-5" aria-hidden="true" />
                                                         </button>
                                                     ) 
                                                 }
-                                                
+                                                <Tooltip id={`${palabra.id}-${def.id}`} /> 
                                             </td>
                                         ))}
                                    
