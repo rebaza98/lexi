@@ -485,14 +485,14 @@ const MatrizBetaHome = () => {
                                             <td  key={def.id} className="text-center"  >
                                                 {(verificaRelacion(palabra.definiciones, def.id)) ? 
                                                     ( 
-                                                        <button data-tooltip-id={`${palabra.id}-${def.id}`} data-tooltip-content={def.definicion} data-tooltip-delay-show="350" className="rounded-full bg-green-600 p-1 text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"  onClick={ () =>   handleClickRemove(palabra.id, def.id)}  
+                                                        <button data-tooltip-id={`${palabra.id}-${def.id}`} data-tooltip-content={def.definicion} data-tooltip-delay-show="350" className="rounded-full bg-orange-600 p-1 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"  onClick={ () =>   handleClickRemove(palabra.id, def.id)}  
                                                         >
                                                             <PlusIcon className="h-5 w-5" aria-hidden="true" />
                                                         </button>
                                                     ) 
                                                     : 
                                                     (    
-                                                        <button data-tooltip-id={`${palabra.id}-${def.id}`} data-tooltip-content={def.definicion} data-tooltip-delay-show="350" className="rounded-full bg-orange-600 p-1 text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"  onClick={ () =>   handleClickAdd(palabra.id, def.id)}  
+                                                        <button data-tooltip-id={`${palabra.id}-${def.id}`} data-tooltip-content={def.definicion} data-tooltip-delay-show="350" className="rounded-full bg-gray-600 p-1 text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"  onClick={ () =>   handleClickAdd(palabra.id, def.id)}  
                                                         >
                                                             <MinusIcon className="h-5 w-5" aria-hidden="true" />
                                                         </button>
